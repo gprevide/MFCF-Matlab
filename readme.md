@@ -1,6 +1,6 @@
 This repository contains the MATLAB (c) code that implements the _MFCF_ algorithm described in the following publications:
 
- - Massara, Guido Previde, and Tomaso Aste. "Learning clique forests." _arXiv preprint arXiv:1905.02266_ (2019).
+ - Massara, Guido Previde, and Tomaso Aste. "Learning clique forests." [arXiv preprint arXiv:1905.02266_ (2019)](https://arxiv.org/abs/1905.02266). 
  - Previde Massara, Guido. "Building Information Filtering Networks with Topological Constraints: Algorithms and Applications." PhD diss., UCL (University College London), 2020.
 
 The _MFCF_ algorithm, as implemented here, has been applied to problems concerning portfolio and risk management here:
