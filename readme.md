@@ -5,7 +5,7 @@ This repository contains the MATLAB (c) code that implements the _MFCF_ algorith
 
 The _MFCF_ algorithm, as implemented here, has been applied to problems concerning portfolio and risk management here:
 
- - Aste, Tomaso. "Topological regularization with information filtering networks." _arXiv preprint arXiv:2005.04692_ (2020).
+ - Aste, Tomaso. "Topological regularization with information filtering networks."[arXiv:2005,04692](https://arxiv.org/abs/2005.04692) (2020).
  - Aste, Tomaso. "Stress testing and systemic risk measures using multivariate conditional probability." Available at SSRN 3575512 (2020). 
 
 A version of the algorithm has been implemented in the R (C) programming language and is available in Dr. Alex Christensen's [NetworkToolbox](https://cran.r-project.org/web/packages/NetworkToolbox/index.html):
