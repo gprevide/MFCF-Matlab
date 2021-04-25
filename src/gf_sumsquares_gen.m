@@ -22,7 +22,7 @@
 % Author: XM78AT <XM78AT@WPU8L0063505>
 % Created: 2021-03-29
 
-function [nodes gains seps] = gf_sumsquares_gen (v, clq, M, ct_control)
+function [nodes gains seps] = gf_sumsquares_gen (M, clq, v, ct_control)
 %GF_SUMSQUARES_GEN returns the sum of squares subjet to max_clique_size, 
 % min_clique_size, threshold constraints
 
@@ -73,7 +73,7 @@ end
 
 % now let's generate the table for the calculation of gains
 % get number of facets
-[block_rows, ~] = size(facets);
+[block_rows, ncols] = size(facets);
 % repeat the outstanding vertices times the number of facets
 the_vs = reshape(repmat(v, block_rows, 1), block_rows*vn,1);
 % repeat facets times the number of outstanding vertices
@@ -99,7 +99,7 @@ the_table = the_table(selector <= cachesize, :);
 
 nodes = the_table(:,1);
 gains = the_table(:,2);
-seps = the_table(:,3:end);
+seps = [the_table(:,3:end), NaN(numel(nodes),maxcsize - 1- ncols)];
 
 
 end
