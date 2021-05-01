@@ -1,4 +1,3 @@
- 
 function [ cliques, separators, peo, tree ] = MFCF( X, ct_control, gain_function )
 %MFCF Builds a clique forest from data
 % See:
@@ -64,35 +63,41 @@ GT.separators(idx, :) = seps;
 GT.nodes = nodes;
 
 while(~isempty(outstanding_nodes))
+
    [the_gain, idx] = nanmax(GT.gains);
-   idx = idx(1); % keep only first match
-   the_node = GT.nodes(idx);
-   the_sep  = GT.separators(idx,:);
-   the_sep = the_sep(~isnan(the_sep));
-   parent_clique = GT.cliques(idx,:);
-   parent_clique_id = id_from_set(cliques, parent_clique);
+
+   % case no gain, we must add an isolated clique, let us pick up the first 
+   % outstanding node
+   if isnan(the_gain)
+     the_node = outstanding_nodes(1);
+     the_sep  = [];
+     parent_clique = [];
+     parent_clique_id = NaN;
+   else    
+     idx = idx(1); % keep only first match
+     the_node = GT.nodes(idx);
+     the_sep  = GT.separators(idx,:);
+     the_sep = the_sep(~isnan(the_sep));
+     parent_clique = GT.cliques(idx,:);
+     parent_clique_id = id_from_set(cliques, parent_clique);
+   end;
+   
    new_clique = [the_sep the_node];
    outstanding_nodes = outstanding_nodes(outstanding_nodes ~= the_node);
    peo = [peo; the_node];
    
-   % in case of no gain add an isolated clique
-   if the_gain <=0 
-     new_clique = [the_node];
-     %clique_no = clique_no +1;
-     %clique_to_update = clique_no;
-     %cliques(clique_to_update, 1:numel(new_clique)) = new_clique;
-   end
-   
-%   cl = new_clique
-%   npeo = numel(peo)
-%   noutn = numel(outstanding_nodes)
-%   pcid = parent_clique_id
+   %togo = numel(outstanding_nodes)
    
    % track if it is a clique extension or a new clique
    clique_extension = 0;
    
-   % case new clique
-   if numel(new_clique) <= sum(~isnan(parent_clique))
+   % in case of no gain add an isolated clique
+   if isnan(the_gain)
+     clique_no = clique_no +1;
+     clique_to_update = clique_no;
+     cliques(clique_to_update, 1:numel(new_clique)) = new_clique;
+   % case new clique with existing intersection
+   elseif numel(new_clique) <= sum(~isnan(parent_clique))
        clique_no = clique_no + 1;
        clique_to_update = clique_no;
        sep_no = sep_no + 1;
