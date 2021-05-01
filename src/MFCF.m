@@ -83,10 +83,10 @@ while(~isempty(outstanding_nodes))
      %cliques(clique_to_update, 1:numel(new_clique)) = new_clique;
    end
    
-##   cl = new_clique
-##   npeo = numel(peo)
-##   noutn = numel(outstanding_nodes)
-##   pcid = parent_clique_id
+%   cl = new_clique
+%   npeo = numel(peo)
+%   noutn = numel(outstanding_nodes)
+%   pcid = parent_clique_id
    
    % track if it is a clique extension or a new clique
    clique_extension = 0;
